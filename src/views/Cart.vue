@@ -1,8 +1,8 @@
 <template lang="pug">
 #cart
   b-container
-    vue-good-wizard.mt-5(:steps='steps', :onnext='nextClicked', :onback='backClicked')
-      div(slot='page1')
+    form-wizard(@on-complete='onComplete' title="" subtitle="" back-button-text="上一頁" next-button-text="下一頁" finish-button-text="提交訂單" color="#555b6e")
+      tab-content(title='購物車')
         h4 Step 1
         #cart
           b-container(v-if='images.length>0')
@@ -45,7 +45,7 @@
               | 你的購物車沒有商品 ಥ_ಥ
               br
               router-link.h5(to='/products') 可以從這裡去看看喔！
-      div(slot='page2')
+      tab-content(title='輸入訂購資料')
         h4 Step 2
         b-container
           h1 輸入訂購資料
@@ -60,8 +60,8 @@
               b-form-input#input-1(v-model='checkoutaddress', type='text', required='required', placeholder='請輸入地址...')
             b-form-group#input-group-1(label='備註', label-for='input-1', description='輸入想備註的內容(選填)', invalid-feedback='備註格式不符')
               b-form-input#input-1(v-model='checkoutcontent', type='text', placeholder='請輸入備註...')
-            .text-center
-              b-btn.mx-1(variant='success', type='submit') &#x63D0;&#x4EA4;&#x8A02;&#x55AE;
+            //- .text-center
+            //-   b-btn.mx-1(variant='success', type='submit') &#x63D0;&#x4EA4;&#x8A02;&#x55AE;
   // footer
   .footer.text-white.mt-5
     .row.d-flex.justify-content-around
@@ -198,9 +198,42 @@ export default {
     }
   },
   methods: {
+    onComplete: function () {
+      if (this.checkoutnameState) {
+        this.axios.post(process.env.VUE_APP_API + '/orders/', this.$data)
+          .then(res => {
+            if (res.data.success) {
+              this.$swal({
+                icon: 'success',
+                title: '訂購成功',
+                text: '恭喜您訂購完成!預計7-14個工作天會寄出商品!(貨到付款)，若您購買的是濾水器，預計2個工作天內會有專人與您聯繫安裝時間!'
+              })
+              this.checkoutname = ''
+              this.checkoutemail = ''
+              this.checkoutphone = ''
+              this.checkoutaddress = ''
+              this.checkoutcontent = ''
+              this.checkoutproductname.length = 0
+            } else {
+              this.$swal({
+                icon: 'error',
+                title: '發生錯誤',
+                text: res.data.message
+              })
+            }
+          })
+          .catch(err => {
+            this.$swal({
+              icon: 'error',
+              title: '發生錯誤',
+              text: err.response.data.message
+            })
+          })
+      }
+    },
     onSubmit () {
       if (this.checkoutnameState) {
-        this.axios.post(process.env.VUE_APP_URL + '/orders/', this.$data)
+        this.axios.post(process.env.VUE_APP_API + '/orders/', this.$data)
           .then(res => {
             if (res.data.success) {
               this.$swal({

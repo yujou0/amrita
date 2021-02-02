@@ -57,7 +57,7 @@ export default {
     }
   },
   mounted () {
-    this.axios.get(process.env.VUE_APP_URL + '/orders/checkoutlist/')
+    this.axios.get(process.env.VUE_APP_API + '/orders/checkoutlist/')
       .then(res => {
         if (res.data.success) {
           this.images = res.data.result
@@ -82,7 +82,7 @@ export default {
       this.$dialog
         .confirm('確定刪除該筆訂單?? (☉д⊙)')
         .then(res => {
-          this.axios.delete(process.env.VUE_APP_URL + '/orders/' + image._id)
+          this.axios.delete(process.env.VUE_APP_API + '/orders/' + image._id)
             .then(res => {
               if (res.data.success) {
                 this.images.splice(idx, 1)

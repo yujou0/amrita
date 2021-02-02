@@ -20,6 +20,8 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import VuejsDialog from 'vuejs-dialog'
 import VueParticles from 'vue-particles'
+import VueFormWizard from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 
 import App from './App.vue'
 import router from './router'
@@ -46,6 +48,7 @@ AOS.init()
 
 Vue.component('ImgInputer', ImgInputer)
 
+Vue.use(VueFormWizard)
 Vue.use(VueParticles)
 Vue.use(VuejsDialog)
 Vue.use(animated)

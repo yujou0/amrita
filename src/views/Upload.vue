@@ -263,13 +263,13 @@ export default {
         fd.append('count', this.count)
         this.isLoading = true
         this.status.fileUploading = true
-        this.axios.post(process.env.VUE_APP_URL + '/albums/', fd)
+        this.axios.post(process.env.VUE_APP_API + '/albums/', fd)
           .then(res => {
             if (res.data.success) {
               // 將新增的圖片塞進相簿陣列
               this.isLoading = false
               this.status.fileUploading = false
-              res.data.result.src = process.env.VUE_APP_URL + '/albums/file/' + res.data.result.file
+              res.data.result.src = process.env.VUE_APP_API + '/albums/file/' + res.data.result.file
               res.data.result.title = res.data.result.description
               res.data.result.edit = false
               res.data.result.model = res.data.result.description
@@ -325,7 +325,7 @@ export default {
       image.modelcount = image.titlecount
     },
     save (image) {
-      this.axios.patch(process.env.VUE_APP_URL + '/albums/' + image._id, { description: image.model, type: image.modeltype, count: image.modelcount, price: image.modelprice, name: image.modelname })
+      this.axios.patch(process.env.VUE_APP_API + '/albums/' + image._id, { description: image.model, type: image.modeltype, count: image.modelcount, price: image.modelprice, name: image.modelname })
         .then(res => {
           if (res.data.success) {
             image.edit = false
@@ -362,7 +362,7 @@ export default {
       this.$dialog
         .confirm('確定刪除該筆訂單?? (☉д⊙)')
         .then(res => {
-          this.axios.delete(process.env.VUE_APP_URL + '/albums/' + image._id)
+          this.axios.delete(process.env.VUE_APP_API + '/albums/' + image._id)
             .then(res => {
               if (res.data.success) {
                 this.images.splice(idx, 1)
@@ -385,11 +385,11 @@ export default {
     }
   },
   mounted () {
-    this.axios.get(process.env.VUE_APP_URL + '/albums/user/')
+    this.axios.get(process.env.VUE_APP_API + '/albums/user/')
       .then(res => {
         if (res.data.success) {
           this.images = res.data.result.map(image => {
-            image.src = process.env.VUE_APP_URL + '/albums/file/' + image.file
+            image.src = process.env.VUE_APP_API + '/albums/file/' + image.file
             image.title = image.description
             image.edit = false
             image.model = image.description
