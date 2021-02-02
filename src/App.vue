@@ -207,7 +207,7 @@ export default {
       }, 1800)
     },
     logout () {
-      this.axios.delete(process.env.VUE_APP_API + '/users/logout')
+      this.axios.delete(process.env.VUE_APP_URL + '/users/logout')
         .then(res => {
           // 如果登出成功
           if (res.data.success) {

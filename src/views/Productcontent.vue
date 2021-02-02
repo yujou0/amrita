@@ -71,11 +71,11 @@ export default {
     }
   },
   mounted () {
-    this.axios.get(process.env.VUE_APP_API + '/albums/user/')
+    this.axios.get(process.env.VUE_APP_URL + '/albums/user/')
       .then(res => {
         if (res.data.success) {
           this.images = res.data.result.map(image => {
-            image.src = process.env.VUE_APP_API + '/albums/file/' + image.file
+            image.src = process.env.VUE_APP_URL + '/albums/file/' + image.file
             image.edit = false
             image.try = '123'
             delete image.file

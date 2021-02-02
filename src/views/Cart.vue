@@ -200,7 +200,7 @@ export default {
   methods: {
     onSubmit () {
       if (this.checkoutnameState) {
-        this.axios.post(process.env.VUE_APP_API + '/orders/', this.$data)
+        this.axios.post(process.env.VUE_APP_URL + '/orders/', this.$data)
           .then(res => {
             if (res.data.success) {
               this.$swal({
