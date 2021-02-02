@@ -77,7 +77,7 @@ export default {
     onSubmit () {
       // 如果帳號密碼驗證通過
       if (this.accountState && this.passwordState) {
-        this.axios.post(process.env.VUE_APP_API + '/users/login', this.$data)
+        this.axios.post(process.env.VUE_APP_URL + '/users/login', this.$data)
           .then(res => {
             if (res.data.success) {
               this.$store.commit('login', res.data.result)

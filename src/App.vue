@@ -207,7 +207,7 @@ export default {
       }, 1800)
     },
     logout () {
-      this.axios.delete(process.env.VUE_APP_API + '/users/logout')
+      this.axios.delete(process.env.VUE_APP_URL + '/users/logout')
         .then(res => {
           // 如果登出成功
           if (res.data.success) {
@@ -242,7 +242,7 @@ export default {
         })
     },
     heartbeat () {
-      this.axios.get(process.env.VUE_APP_API + '/users/heartbeat')
+      this.axios.get(process.env.VUE_APP_URL + '/users/heartbeat')
         .then(res => {
           // 如果 vuex 是登入中
           if (this.user.id.length > 0) {
