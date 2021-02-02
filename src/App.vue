@@ -242,7 +242,7 @@ export default {
         })
     },
     heartbeat () {
-      this.axios.get(process.env.VUE_APP_API + '/users/heartbeat')
+      this.axios.get(process.env.VUE_APP_URL + '/users/heartbeat')
         .then(res => {
           // 如果 vuex 是登入中
           if (this.user.id.length > 0) {
