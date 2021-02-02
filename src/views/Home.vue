@@ -33,7 +33,7 @@
         b-btn 立即購買 !
     b-container(data-aos='zoom-in')
       .carousel.col-12.col-lg-6(v-for="carousel in carousels")
-        b-carousel.m-1(id="carousel-fade" :interval="carousel.speed" slide controls indicators)
+        b-carousel.m-1(id="carousel-fade" :interval="carousel.speed" controls indicators)
           .carouselImg(v-for="src in carousel.imgs")
             b-carousel-slide.img-scale(:img-src="src")
   br
