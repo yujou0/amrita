@@ -141,7 +141,7 @@
   // background-color: red;
 }
 .slide-fade-enter-active {
- transition: all 3s ease;
+ transition: all 2s ease;
 }
 .slide-fade-leave-active {
  transition: all .1s cubic-bezier(2.0, 0.5, 0.8, 1.0);
