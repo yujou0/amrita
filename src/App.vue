@@ -19,10 +19,10 @@
             span.navbar-toggler-icon
         b-collapse#nav-collapse(is-nav)
           b-navbar-nav.ml-auto.font-weight-bold
-            b-nav-item(@click="loading" v-if="user.id.length === 0 | user.id.length> 0" to='/about') 品牌故事
+            b-nav-item( v-if="user.id.length === 0 | user.id.length> 0" to='/about') 品牌故事
             b-nav-item(@click="loading" v-if="user.id.length === 0 | user.id.length> 0" to='/products') 淨水商品
-            b-nav-item(@click="loading" v-if="user.id.length === 0 | user.id.length> 0" to='/contact') 聯絡我們
-            b-nav-item(@click="loading" v-if="user.id.length === 0 | user.id.length> 0" to='/cart')
+            b-nav-item( v-if="user.id.length === 0 | user.id.length> 0" to='/contact') 聯絡我們
+            b-nav-item( v-if="user.id.length === 0 | user.id.length> 0" to='/cart')
               font-awesome-icon(:icon="['fas', 'shopping-cart']")
               span.text-info {{ images.length }}
             b-nav-item(v-if="user.id.length === 0" to='/login')
