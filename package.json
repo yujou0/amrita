@@ -1,6 +1,7 @@
 {
   "name": "album",
   "version": "0.1.0",
+  "src/main.js"
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
